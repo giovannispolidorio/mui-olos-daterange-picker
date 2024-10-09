@@ -15,6 +15,9 @@ export interface DateRangePickerWrapperProps {
   maxDate?: Date | string;
   // eslint-disable-next-line no-unused-vars
   onChange: (dateRange: DateRange) => void;
+  // eslint-disable-next-line no-unused-vars
+  onCalendarChange?: (newDate?: Date) => void;
+  onHeaderCalendarChange?: () => void;
   closeOnClickOutside?: boolean;
   wrapperClassName?: string;
   locale?: Locale;

@@ -12,6 +12,7 @@ interface HeaderProps {
   prevDisabled: boolean;
   onClickNext: () => void;
   onClickPrevious: () => void;
+  onHeaderChange?: () => void;
   locale?: Locale;
 }
 
@@ -29,7 +30,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   prevDisabled,
   onClickNext,
   onClickPrevious,
-  locale
+  locale,
+  onHeaderChange,
 }: HeaderProps) => {
   const MONTHS = typeof locale !== 'undefined'
     ? [...Array(12).keys()].map(d => locale.localize?.month(d, { width: 'abbreviated', context: 'standalone' }))
@@ -38,11 +40,13 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   const handleMonthChange = (event: SelectChangeEvent<number>) => {
     const newDate = setMonth(date, parseInt(event.target.value as string, 10));
     setDate(newDate); 
+    onHeaderChange && onHeaderChange();
   };
 
   const handleYearChange = (event: SelectChangeEvent<number>) => {
     const newDate = setYear(date, parseInt(event.target.value as string, 10));
     setDate(newDate); 
+    onHeaderChange && onHeaderChange();
   };
 
   return (

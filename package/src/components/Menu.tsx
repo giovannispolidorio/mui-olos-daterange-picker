@@ -34,6 +34,8 @@ interface MenuProps {
     onDayHover: (day: Date) => void;
     // eslint-disable-next-line no-unused-vars
     onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
+    // eslint-disable-next-line no-unused-vars
+    onHeaderChange: () => void;
   };
   locale?: Locale;
 }
