@@ -6,8 +6,8 @@ import { DateRange, DefinedRange, NavigationAction } from '../types';
 import { getValidatedMonths, parseOptionalDate } from '../utils';
 import { getDefaultRanges } from '../defaults';
 import Menu from './Menu';
-import { Marker, MARKERS } from './Markers';
-import Header from './Header'; 
+import { MARKERS } from './Markers';
+import Header from './Header';
 
 interface DateRangePickerProps {
   open: boolean;
@@ -110,7 +110,7 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: D
     }
   };
 
-  const onMonthNavigate = (marker: Marker, action: NavigationAction) => {
+  const onMonthNavigate = (marker: symbol, action: NavigationAction) => {
     if (marker === MARKERS.FIRST_MONTH) {
       const firstNew = addMonths(firstMonth, action);
       if (isBefore(firstNew, secondMonth)) setFirstMonth(firstNew);
@@ -150,31 +150,31 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: D
   };
 
   return open ? (
-    <Menu
-      dateRange={dateRange}
-      minDate={minDateValid}
-      maxDate={maxDateValid}
-      ranges={definedRanges}
-      firstMonth={firstMonth}
-      secondMonth={secondMonth}
-      setFirstMonth={setFirstMonthValidated}
-      setSecondMonth={setSecondMonthValidated}
-      setDateRange={setDateRangeValidated}
-      helpers={helpers}
-      handlers={handlers}
-      locale={locale}
-      HeaderComponent={(
-        <Header
-          date={firstMonth}
-          setDate={handleMonthYearChange} 
-          nextDisabled={false}
-          prevDisabled={false}
-          onClickNext={() => handlers.onMonthNavigate(MARKERS.FIRST_MONTH, NavigationAction.Next)}
-          onClickPrevious={() => handlers.onMonthNavigate(MARKERS.FIRST_MONTH, NavigationAction.Previous)}
-          locale={locale}
-        />
-      )}
-    />
+    <>
+      <Header
+        date={firstMonth}
+        setDate={handleMonthYearChange} 
+        nextDisabled={false}
+        prevDisabled={false}
+        onClickNext={() => handlers.onMonthNavigate(MARKERS.FIRST_MONTH, NavigationAction.Next)}
+        onClickPrevious={() => handlers.onMonthNavigate(MARKERS.FIRST_MONTH, NavigationAction.Previous)}
+        locale={locale}
+      />
+      <Menu
+        dateRange={dateRange}
+        minDate={minDateValid}
+        maxDate={maxDateValid}
+        ranges={definedRanges}
+        firstMonth={firstMonth}
+        secondMonth={secondMonth}
+        setFirstMonth={setFirstMonthValidated}
+        setSecondMonth={setSecondMonthValidated}
+        setDateRange={setDateRangeValidated}
+        helpers={helpers}
+        handlers={handlers}
+        locale={locale}
+      />
+    </>
   ) : null;
 };
 
