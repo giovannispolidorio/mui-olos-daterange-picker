@@ -26,7 +26,7 @@ yarn add @olostecnologia/mui-daterange-picker
 ## Basic example
 ```tsx
 import React from "react";
-import { DateRangePicker, DateRange } from "mui-daterange-picker";
+import { DateRangePicker, DateRange } from "@olostecnologia/mui-daterange-picker";
 
 type Props = {}
 
