@@ -32,15 +32,17 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   locale
 }: HeaderProps) => {
   const MONTHS = typeof locale !== 'undefined'
-    ? [...Array(12).keys()].map(d => locale.localize?.month(d, {width: 'abbreviated', context: 'standalone'}))
+    ? [...Array(12).keys()].map(d => locale.localize?.month(d, { width: 'abbreviated', context: 'standalone' }))
     : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
   const handleMonthChange = (event: SelectChangeEvent<number>) => {
-    setDate(setMonth(date, parseInt(event.target.value as string, 10)));
+    const newDate = setMonth(date, parseInt(event.target.value as string, 10));
+    setDate(newDate); 
   };
 
   const handleYearChange = (event: SelectChangeEvent<number>) => {
-    setDate(setYear(date, parseInt(event.target.value as string, 10)));
+    const newDate = setYear(date, parseInt(event.target.value as string, 10));
+    setDate(newDate); 
   };
 
   return (
@@ -64,8 +66,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         <FormControl variant="standard">
           <Select
             value={getMonth(date)}
-            onChange={handleMonthChange}
-            MenuProps={{disablePortal: true}}
+            onChange={handleMonthChange} 
+            MenuProps={{ disablePortal: true }}
           >
             {MONTHS.map((month, idx) => (
               <MenuItem key={month} value={idx}>
@@ -80,7 +82,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         <FormControl variant="standard">
           <Select
             value={getYear(date)}
-            onChange={handleYearChange}
+            onChange={handleYearChange} 
             MenuProps={{ disablePortal: true }}
           >
             {generateYears(date, 30).map((year) => (
