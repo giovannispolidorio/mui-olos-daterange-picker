@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface DateRange {
   startDate?: Date;
@@ -13,11 +13,14 @@ export enum NavigationAction {
   Previous = -1,
 
   // eslint-disable-next-line no-unused-vars
-  Next = 1
+  Next = 1,
 }
 
 export type DefinedRange = {
-  startDate: Date;
-  endDate: Date;
+  startDate?: Date;
+  endDate?: Date;
   label: string;
+  activie?: boolean;
+  onClick?: () => void;
+  type: "date" | "string";
 };
