@@ -7,6 +7,7 @@ import { getValidatedMonths, parseOptionalDate } from '../utils';
 import { getDefaultRanges } from '../defaults';
 import Menu from './Menu';
 import { Marker, MARKERS } from './Markers';
+import Header from './Header'; 
 
 interface DateRangePickerProps {
   open: boolean;
@@ -16,12 +17,11 @@ interface DateRangePickerProps {
   maxDate?: Date | string;
   // eslint-disable-next-line no-unused-vars
   onChange: (dateRange: DateRange) => void;
+  onCalendarChange?: (newDate: Date) => void;  
   locale?: Locale;
 }
 
-const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
-  props: DateRangePickerProps,
-) => {
+const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: DateRangePickerProps) => {
   const today = new Date();
 
   const {
@@ -87,6 +87,14 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
     }
   };
 
+  const handleMonthYearChange = (newDate: Date) => {
+    setDateRange({ startDate: newDate, endDate: newDate });
+    
+    if (props.onCalendarChange) {
+      props.onCalendarChange(newDate);
+    }
+  };
+
   const onDayClick = (day: Date) => {
     if (startDate && !endDate && !isBefore(day, startDate)) {
       const newRange = { startDate, endDate: day };
@@ -96,6 +104,10 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
       setDateRange({ startDate: day, endDate: undefined });
     }
     setHoverDay(day);
+
+    if (props.onCalendarChange) {
+      props.onCalendarChange(day);
+    }
   };
 
   const onMonthNavigate = (marker: Marker, action: NavigationAction) => {
@@ -105,6 +117,10 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
     } else {
       const secondNew = addMonths(secondMonth, action);
       if (isBefore(firstMonth, secondNew)) setSecondMonth(secondNew);
+    }
+
+    if (props.onCalendarChange) {
+      props.onCalendarChange(action === NavigationAction.Previous ? firstMonth : secondMonth);
     }
   };
 
@@ -147,6 +163,17 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
       helpers={helpers}
       handlers={handlers}
       locale={locale}
+      HeaderComponent={(
+        <Header
+          date={firstMonth}
+          setDate={handleMonthYearChange} 
+          nextDisabled={false}
+          prevDisabled={false}
+          onClickNext={() => handlers.onMonthNavigate(MARKERS.FIRST_MONTH, NavigationAction.Next)}
+          onClickPrevious={() => handlers.onMonthNavigate(MARKERS.FIRST_MONTH, NavigationAction.Previous)}
+          locale={locale}
+        />
+      )}
     />
   ) : null;
 };
