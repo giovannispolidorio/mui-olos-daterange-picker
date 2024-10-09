@@ -1,13 +1,16 @@
 {
-    "name": "mui-daterange-picker",
-    "version": "1.0.5",
+    "name": "@olostecnologia/mui-daterange-picker",
+    "version": "1.0.0",
     "description": "A react date range picker implementation using @mui.",
-    "author": "ricard33",
-    "license": "MIT",
-    "repository": "ricard33/mui-daterange-picker",
+    "author": "Giovanni Sabino <giovanni.sabino@olos.com.br>",
+    "license": "ISC",
+    "repository": "giovannispolidorio/mui-olos-daterange-picker",
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
+    "publishConfig": {
+		"access": "public"
+	},
     "engines": {
         "node": ">=8",
         "npm": ">=5"
