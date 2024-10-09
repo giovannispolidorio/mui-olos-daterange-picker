@@ -17,10 +17,10 @@ Check out the project running [here](https://codesandbox.io/s/mui-daterange-pick
 ## Usage
 
 ```bash
-npm install mui-daterange-picker --save
+npm i @olostecnologia/mui-daterange-picker --save
 
 # or with yarn
-yarn add mui-daterange-picker
+yarn add @olostecnologia/mui-daterange-picker
 ```
 
 ## Basic example
