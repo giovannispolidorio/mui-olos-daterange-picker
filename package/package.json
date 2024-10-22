@@ -1,6 +1,6 @@
 {
     "name": "@olostecnologia/mui-daterange-picker",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "description": "A react date range picker implementation using @mui.",
     "author": "Giovanni Sabino <giovanni.sabino@olos.com.br>",
     "license": "ISC",

@@ -72,13 +72,13 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: D
       setFirstMonth(newStart);
       setSecondMonth(isSameMonth(newStart, newEnd) ? addMonths(newStart, 1) : newEnd);
     } else {
-      const emptyRange = {};
+      // const emptyRange = {};
 
-      setDateRange(emptyRange);
-      onChange(emptyRange);
+      // setDateRange(emptyRange);
+      // onChange(emptyRange);
 
       setFirstMonth(today);
-      setSecondMonth(addMonths(firstMonth, 1));
+      setSecondMonth(addMonths(today, 1));
     }
   };
 
