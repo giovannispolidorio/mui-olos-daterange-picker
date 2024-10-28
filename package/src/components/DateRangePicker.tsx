@@ -1,5 +1,5 @@
 import * as React from "react";
-import { addMonths, addYears, isAfter, isBefore, isSameDay, isSameMonth, isWithinInterval, max, min } from "date-fns";
+import { addMonths, addYears, isAfter, isBefore, isSameDay, isSameMonth, isWithinInterval, max, min, subMonths} from "date-fns";
 import { DateRange, DefinedRange, NavigationAction } from "../types";
 import { getValidatedMonths, parseOptionalDate } from "../utils";
 import { getDefaultRanges } from "../defaults";
@@ -77,8 +77,8 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: D
       // setDateRange(emptyRange);
       // onChange(emptyRange);
 
-      setFirstMonth(today);
-      setSecondMonth(addMonths(today, 1));
+      setFirstMonth(subMonths(today, 1));
+      setSecondMonth(today);
     }
   };
 
